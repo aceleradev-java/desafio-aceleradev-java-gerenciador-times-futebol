@@ -28,6 +28,24 @@ public class DesafioMeuTimeApplicationSimpleTest {
     }
 
     @Test
+    public void deveBuscarTimeExistentePorId(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirTime(2l, "Teste2", LocalDate.now(), "branco", "branco");
+        assertEquals("Teste2", desafioMeuTimeApplication.buscarTimePorId(2L).getNome());
+        assertEquals(new Long(1), desafioMeuTimeApplication.buscarTimePorId(1L).getId());
+    }
+
+    @Test
+    public void deveBuscarJogadorExistentePorId(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirJogador(1l, 1l, "Jogador1", LocalDate.now(), 1, BigDecimal.TEN);
+        desafioMeuTimeApplication.incluirJogador(2l, 1l, "Jogador2", LocalDate.now(), 1, BigDecimal.TEN);
+        assertEquals("Jogador1", desafioMeuTimeApplication.buscarJogadorPorId(1l).getNome());
+    }
+
+    @Test
     public void deveDefinirCapitao(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
         desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");

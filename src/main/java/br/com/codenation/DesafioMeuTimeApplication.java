@@ -1,5 +1,6 @@
 package br.com.codenation;
 
+import br.com.codenation.model.Jogador;
 import br.com.codenation.model.TimeDeFutebol;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,6 +10,9 @@ import java.util.List;
 public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
     private List<TimeDeFutebol> listaDeTimes = new ArrayList<>();
+    private List<Jogador> listaDeJogadores = new ArrayList<>();
+    private TimeDeFutebol time = new TimeDeFutebol();
+    private Jogador jogador = new Jogador();
 
     public void incluirTime(Long id, String nome, LocalDate dataCriacao, String corUniformePrincipal, String corUniformeSecundario) {
         TimeDeFutebol time = new TimeDeFutebol(id, nome, dataCriacao, corUniformePrincipal, corUniformeSecundario);
@@ -16,19 +20,48 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public void incluirJogador(Long id, Long idTime, String nome, LocalDate dataNascimento, Integer nivelHabilidade, BigDecimal salario) {
-        throw new UnsupportedOperationException();
+        Jogador jogador = new Jogador(id, idTime, nome, dataNascimento, nivelHabilidade, salario);
+        listaDeJogadores.add(jogador);
     }
 
     public void definirCapitao(Long idJogador) {
-        throw new UnsupportedOperationException();
+        jogador = null;
+        jogador = buscarJogadorPorId(idJogador);
+        time = buscarTimePorId(jogador.getIdTime());
+        time.setIdDoJogadorCapitao(idJogador);
     }
 
     public Long buscarCapitaoDoTime(Long idTime) {
-        throw new UnsupportedOperationException();
+        time = buscarTimePorId(idTime);
+        return time.getIdDoJogadorCapitao();
+    }
+    
+    public TimeDeFutebol buscarTimePorId(Long id) {
+        time = null;
+        for (TimeDeFutebol t : listaDeTimes) {
+            if (t.getId().equals(id)) {
+                time = t;
+            }
+        }
+        return time;
     }
 
+    
+    public Jogador buscarJogadorPorId(Long idDoJogador) {
+        jogador = new Jogador();
+        jogador.setId(idDoJogador);
+        int posicao;
+        for (Jogador j : listaDeJogadores) {
+            if (j.getId().equals(idDoJogador)) {
+                jogador = j;
+            }
+        }
+        return jogador;        
+    }
+    
     public String buscarNomeJogador(Long idJogador) {
-        throw new UnsupportedOperationException();
+        jogador = buscarJogadorPorId(idJogador);
+        return jogador.getNome();
     }
 
     public String buscarNomeTime(Long idTime) {
@@ -36,7 +69,13 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public List<Long> buscarJogadoresDoTime(Long idTime) {
-        throw new UnsupportedOperationException();
+        List<Long> jogadores = new ArrayList<>();
+        for (Jogador jogador : listaDeJogadores) {
+            if (jogador.getIdTime().equals(idTime)) {
+                jogadores.add(jogador.getId());
+            }
+        }
+        return jogadores;
     }
 
     public Long buscarMelhorJogadorDoTime(Long idTime) {
@@ -66,5 +105,19 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     public List<Long> buscarTopJogadores(Integer top) {
         throw new UnsupportedOperationException();
     }
+    
+    public static void main(String[] args) {
+        TimeDeFutebol time1 = new TimeDeFutebol(1l, "Time 01", LocalDate.now(), "azul", "amarelo");
+        TimeDeFutebol time2 = new TimeDeFutebol(1l, "Time 02", LocalDate.now(), "branco", "preto");
+        TimeDeFutebol time3 = new TimeDeFutebol(1l, "Time 02", LocalDate.now(), "laranja", "preto");
+        
+        DesafioMeuTimeApplication desafio = new DesafioMeuTimeApplication();
+        desafio.incluirTime(1l, "Time 01", LocalDate.now(), "azul", "amarelo");
+        desafio.incluirTime(1l, "Time 02", LocalDate.now(), "branco", "preto");
+        desafio.incluirTime(1l, "Time 02", LocalDate.now(), "laranja", "preto");
+    
+        System.out.println(desafio.buscarTimes());
+    }
 
+    
 }

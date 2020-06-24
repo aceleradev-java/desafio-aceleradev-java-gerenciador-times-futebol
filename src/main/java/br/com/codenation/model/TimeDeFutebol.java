@@ -9,6 +9,7 @@ public class TimeDeFutebol {
     private LocalDate dataCriacao;
     private String corUniformePrincipal;
     private String corUniformeSecundario;
+    private Long idDoJogadorCapitao;
 
     public TimeDeFutebol(Long id, String nome, LocalDate dataCriacao, String corUniformePrincipal, String corUniformeSecundario) {
         this.id = id;
@@ -58,6 +59,14 @@ public class TimeDeFutebol {
 
     public void setCorUniformeSecundario(String corUniformeSecundario) {
         this.corUniformeSecundario = corUniformeSecundario;
+    }
+
+    public Long getIdDoJogadorCapitao() {
+        return idDoJogadorCapitao;
+    }
+
+    public void setIdDoJogadorCapitao(Long idDoJogadorCapitao) {
+        this.idDoJogadorCapitao = idDoJogadorCapitao;
     }
 
     @Override
