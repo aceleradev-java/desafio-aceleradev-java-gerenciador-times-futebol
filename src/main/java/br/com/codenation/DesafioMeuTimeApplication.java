@@ -65,7 +65,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public String buscarNomeTime(Long idTime) {
-        throw new UnsupportedOperationException();
+        time = null;
+        time = buscarTimePorId(idTime);
+        return time.getNome();
     }
 
     public List<Long> buscarJogadoresDoTime(Long idTime) {
