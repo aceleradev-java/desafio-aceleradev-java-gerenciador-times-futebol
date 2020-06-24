@@ -1,13 +1,18 @@
 package br.com.codenation;
 
+import br.com.codenation.model.TimeDeFutebol;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
+    private List<TimeDeFutebol> listaDeTimes = new ArrayList<>();
+
     public void incluirTime(Long id, String nome, LocalDate dataCriacao, String corUniformePrincipal, String corUniformeSecundario) {
-        throw new UnsupportedOperationException();
+        TimeDeFutebol time = new TimeDeFutebol(id, nome, dataCriacao, corUniformePrincipal, corUniformeSecundario);
+        listaDeTimes.add(time);
     }
 
     public void incluirJogador(Long id, Long idTime, String nome, LocalDate dataNascimento, Integer nivelHabilidade, BigDecimal salario) {
@@ -43,7 +48,11 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public List<Long> buscarTimes() {
-        throw new UnsupportedOperationException();
+        List<Long> idDosTimes = new ArrayList<>();
+        for (TimeDeFutebol time : listaDeTimes) {
+            idDosTimes.add(time.getId());
+        }
+        return idDosTimes;
     }
 
     public Long buscarJogadorMaiorSalario(Long idTime) {
