@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Jogador implements Comparable<Jogador>{
+//public class Jogador {
     private Long id;
     private Long idTime;
     private String nome;
@@ -102,11 +103,11 @@ public class Jogador implements Comparable<Jogador>{
     }
 
     @Override
-    public int compareTo(Jogador j) {
-        if (this.nivelHabilidade < j.nivelHabilidade) {
+    public int compareTo(Jogador jogador) {
+        if (this.getId() > jogador.getId()) {
             return 1;
         }
-        if (this.nivelHabilidade > j.nivelHabilidade) {
+        if (this.getId() < jogador.getId()) {
             return -1;
         }
         return 0;

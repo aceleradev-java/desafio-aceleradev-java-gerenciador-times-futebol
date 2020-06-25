@@ -1,5 +1,6 @@
 package br.com.codenation;
 
+import br.com.codenation.comparator.JogadorNiveldeHabilidadeComparator;
 import br.com.codenation.model.Jogador;
 import br.com.codenation.model.TimeDeFutebol;
 import java.math.BigDecimal;
@@ -86,7 +87,7 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
         for (Long idDoJogador : buscarJogadoresDoTime(idTime)) {
             jogadoresDoTime.add(buscarJogadorPorId(idDoJogador));
         }
-        Collections.sort(jogadoresDoTime);
+        Collections.sort(jogadoresDoTime, new JogadorNiveldeHabilidadeComparator());
         Long idDoMelhorJogador = jogadoresDoTime.get(0).getId();
         return idDoMelhorJogador;
     }
