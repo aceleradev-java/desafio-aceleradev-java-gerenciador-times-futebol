@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Jogador {
+public class Jogador implements Comparable<Jogador>{
     private Long id;
     private Long idTime;
     private String nome;
@@ -99,5 +99,16 @@ public class Jogador {
     @Override
     public String toString() {
         return "Jogador{" + "id=" + id + ", idTime=" + idTime + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", nivelHabilidade=" + nivelHabilidade + ", salario=" + salario + '}';
+    }
+
+    @Override
+    public int compareTo(Jogador j) {
+        if (this.nivelHabilidade < j.nivelHabilidade) {
+            return 1;
+        }
+        if (this.nivelHabilidade > j.nivelHabilidade) {
+            return -1;
+        }
+        return 0;
     }
 }
