@@ -136,6 +136,19 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertTrue(jogadoresTime.contains(3L));
     }
 
+    @Test
+    public void deveBuscarJogadoresDoTimeOrdenadosPorId(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirJogador(3l, 1l, "Jogador1", LocalDate.now(), 1, BigDecimal.TEN);
+        desafioMeuTimeApplication.incluirJogador(2l, 1l, "Jogador2", LocalDate.now(), 1, BigDecimal.TEN);
+        desafioMeuTimeApplication.incluirJogador(1l, 1l, "Jogador3", LocalDate.now(), 1, BigDecimal.TEN);
+        List<Long> jogadoresTime = desafioMeuTimeApplication.buscarJogadoresDoTime(1L);
+        assertEquals(1l, jogadoresTime.get(0).longValue());
+        assertEquals(2l, jogadoresTime.get(1).longValue());
+        assertEquals(3l, jogadoresTime.get(2).longValue());
+    }
+
     @Test(expected = TimeNaoEncontradoException.class)
     public void deveIdentificarTimeNaoEncontradoAoBuscarJogadoresDoTimeDeUmTimeNaoIncluso(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();

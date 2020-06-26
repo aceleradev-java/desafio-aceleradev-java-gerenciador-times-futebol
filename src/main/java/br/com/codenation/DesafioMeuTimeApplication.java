@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class DesafioMeuTimeApplication implements MeuTimeInterface {
@@ -100,6 +101,7 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
                 jogadores.add(jogador.getId());
             }
         }
+        Collections.sort(jogadores);
         return jogadores;
     }
 
