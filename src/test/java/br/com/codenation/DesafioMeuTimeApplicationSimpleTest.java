@@ -136,6 +136,12 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertTrue(jogadoresTime.contains(3L));
     }
 
+    @Test(expected = TimeNaoEncontradoException.class)
+    public void deveIdentificarTimeNaoEncontradoAoBuscarJogadoresDoTimeDeUmTimeNaoIncluso(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.buscarJogadoresDoTime(1L);
+    }
+
     @Test
     public void deveBuscarMelhorJogadorDoTime(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();

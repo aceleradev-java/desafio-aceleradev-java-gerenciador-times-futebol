@@ -91,6 +91,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public List<Long> buscarJogadoresDoTime(Long idTime) {
+        if (buscarTimePorId(idTime) == null) {
+            throw new TimeNaoEncontradoException();
+        }
         List<Long> jogadores = new ArrayList<>();
         for (Jogador jogador : listaDeJogadores) {
             if (jogador.getIdTime().equals(idTime)) {
