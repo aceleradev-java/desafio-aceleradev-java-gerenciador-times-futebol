@@ -88,6 +88,17 @@ public class DesafioMeuTimeApplicationSimpleTest {
         desafioMeuTimeApplication.incluirJogador(3l, 1l, "Jogador2", LocalDate.now(), 2, BigDecimal.TEN);
         assertEquals(3L, desafioMeuTimeApplication.buscarMelhorJogadorDoTime(1L).longValue());
     }
+    
+    @Test 
+    public void deveBuscarMelhorJogadorDoTimeComEmpateNoNivelDeHabilidade(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirJogador(3l, 1l, "Jogador1", LocalDate.now(), 3, BigDecimal.TEN);
+        desafioMeuTimeApplication.incluirJogador(2l, 1l, "Jogador2", LocalDate.now(), 3, BigDecimal.TEN);
+        desafioMeuTimeApplication.incluirJogador(1l, 1l, "Jogador0", LocalDate.now(), 3, BigDecimal.TEN);
+        
+        assertEquals(1l,(long)desafioMeuTimeApplication.buscarMelhorJogadorDoTime(1L));
+    }
 
     @Test
     public void deveBuscarJogadorMaisVelho(){
@@ -115,6 +126,16 @@ public class DesafioMeuTimeApplicationSimpleTest {
         desafioMeuTimeApplication.incluirJogador(3l, 1l, "Jogador2", LocalDate.now().minus(20, ChronoUnit.YEARS), 2, new BigDecimal(20000));
         desafioMeuTimeApplication.incluirJogador(4l, 1l, "Jogador3", LocalDate.now().minus(20, ChronoUnit.YEARS), 2, new BigDecimal(30000));
         assertEquals(4L, desafioMeuTimeApplication.buscarJogadorMaiorSalario(1L).longValue());
+    }
+
+    @Test
+    public void deveBuscarJogadorComMaiorSalarioDoTimeEmpatado(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirJogador(2l, 1l, "Jogador", LocalDate.now().minus(25, ChronoUnit.YEARS), 1, new BigDecimal(10000));
+        desafioMeuTimeApplication.incluirJogador(3l, 1l, "Jogador2", LocalDate.now().minus(20, ChronoUnit.YEARS), 2, new BigDecimal(30000));
+        desafioMeuTimeApplication.incluirJogador(4l, 1l, "Jogador3", LocalDate.now().minus(20, ChronoUnit.YEARS), 2, new BigDecimal(30000));
+        assertEquals(3L, desafioMeuTimeApplication.buscarJogadorMaiorSalario(1L).longValue());
     }
 
     @Test
