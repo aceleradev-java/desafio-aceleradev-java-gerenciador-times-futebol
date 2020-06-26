@@ -127,6 +127,7 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
     public List<Long> buscarTimes() {
         List<Long> idDosTimes = new ArrayList<>();
+        Collections.sort(listaDeTimes, Comparator.comparing(TimeDeFutebol::getId));
         for (TimeDeFutebol time : listaDeTimes) {
             idDosTimes.add(time.getId());
         }

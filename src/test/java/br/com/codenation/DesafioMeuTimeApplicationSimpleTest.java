@@ -208,6 +208,17 @@ public class DesafioMeuTimeApplicationSimpleTest {
     }
 
     @Test
+    public void deveBuscarTodosOsTimesExistentesOrdenadaPorId(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(3l, "Time3", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirTime(2l, "Time2", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirTime(1l, "Time1", LocalDate.now(), "branco", "branco");
+        assertEquals(1L, desafioMeuTimeApplication.buscarTimes().get(0).longValue());
+        assertEquals(2L, desafioMeuTimeApplication.buscarTimes().get(1).longValue());
+        assertEquals(3L, desafioMeuTimeApplication.buscarTimes().get(2).longValue());
+    }
+
+    @Test
     public void deveListarABuscaDeTodosOsTimesVazia(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
         assertEquals(new ArrayList<Long>(), desafioMeuTimeApplication.buscarTimes());
