@@ -190,6 +190,12 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertEquals(2L, desafioMeuTimeApplication.buscarJogadorMaisVelho(1L).longValue());
     }
 
+    @Test(expected = TimeNaoEncontradoException.class)
+    public void deveIdentificarTimeNaoEncontradoAoBuscarJogadorMaisVelhoDeTimeNaoIncluso(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.buscarJogadorMaisVelho(100L);
+    }
+
     @Test
     public void deveBuscarTodosOsTimesExistentes(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
