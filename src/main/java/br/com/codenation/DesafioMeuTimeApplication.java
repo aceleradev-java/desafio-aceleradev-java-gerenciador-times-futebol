@@ -1,5 +1,6 @@
 package br.com.codenation;
 
+import br.com.codenation.comparator.JogadorMaiorSalarioComparator;
 import br.com.codenation.comparator.JogadorMaisVelhoComparator;
 import br.com.codenation.comparator.JogadorNiveldeHabilidadeComparator;
 import br.com.codenation.model.Jogador;
@@ -112,7 +113,13 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public Long buscarJogadorMaiorSalario(Long idTime) {
-        throw new UnsupportedOperationException();
+        List<Jogador> jogadoresDoTime = new ArrayList<>();
+        for (Long idDoJogador : buscarJogadoresDoTime(idTime)) {
+            jogadoresDoTime.add(buscarJogadorPorId(idDoJogador));
+        }
+        Collections.sort(jogadoresDoTime, new JogadorMaiorSalarioComparator());
+        Long idDoJogadorVomMaiorSalario = jogadoresDoTime.get(0).getId();
+        return idDoJogadorVomMaiorSalario;
     }
 
     public BigDecimal buscarSalarioDoJogador(Long idJogador) {
