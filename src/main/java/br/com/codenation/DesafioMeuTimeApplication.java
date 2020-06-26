@@ -4,6 +4,7 @@ import br.com.codenation.comparator.JogadorMaiorSalarioComparator;
 import br.com.codenation.comparator.JogadorMaisVelhoComparator;
 import br.com.codenation.comparator.JogadorNiveldeHabilidadeComparator;
 import br.com.codenation.exceptions.IdentificadorUtilizadoException;
+import br.com.codenation.exceptions.JogadorNaoEncontradoException;
 import br.com.codenation.exceptions.TimeNaoEncontradoException;
 import br.com.codenation.model.Jogador;
 import br.com.codenation.model.TimeDeFutebol;
@@ -59,13 +60,14 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
     
     public Jogador buscarJogadorPorId(Long idDoJogador) {
-        jogador = new Jogador();
-        jogador.setId(idDoJogador);
-        int posicao;
+        jogador = null;
         for (Jogador j : listaDeJogadores) {
             if (j.getId().equals(idDoJogador)) {
                 jogador = j;
             }
+        }
+        if (jogador == null) {
+            throw new JogadorNaoEncontradoException();
         }
         return jogador;        
     }
