@@ -123,7 +123,7 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public BigDecimal buscarSalarioDoJogador(Long idJogador) {
-        throw new UnsupportedOperationException();
+        return buscarJogadorPorId(idJogador).getSalario();
     }
 
     public List<Long> buscarTopJogadores(Integer top) {
