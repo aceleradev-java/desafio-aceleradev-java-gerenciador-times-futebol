@@ -260,6 +260,12 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertEquals(new BigDecimal(10000), desafioMeuTimeApplication.buscarSalarioDoJogador(2L));
     }
 
+    @Test(expected = JogadorNaoEncontradoException.class)
+    public void deveIdentificarJogadorNaoEncontradoAoBuscarSalarioDoJogadorNaoIncluso(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.buscarSalarioDoJogador(200L);
+    }
+
     @Test
     public void deveRetonarTopJogadores(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
