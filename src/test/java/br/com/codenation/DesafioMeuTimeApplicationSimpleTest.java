@@ -164,6 +164,12 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertEquals(3L, desafioMeuTimeApplication.buscarMelhorJogadorDoTime(1L).longValue());
     }
     
+    @Test(expected = TimeNaoEncontradoException.class)
+    public void deveIdentificarTimeNaoEncontradoAoBuscarMelhorJogadorDoTimeDeTimeNaoIncluso(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.buscarMelhorJogadorDoTime(100L);
+    }
+    
     @Test 
     public void deveBuscarMelhorJogadorDoTimeComEmpateNoNivelDeHabilidade(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
