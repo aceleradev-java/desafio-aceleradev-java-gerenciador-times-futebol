@@ -1,5 +1,6 @@
 package br.com.codenation;
 
+import br.com.codenation.exceptions.CapitaoNaoInformadoException;
 import br.com.codenation.exceptions.IdentificadorUtilizadoException;
 import br.com.codenation.exceptions.JogadorNaoEncontradoException;
 import br.com.codenation.exceptions.TimeNaoEncontradoException;
@@ -81,6 +82,13 @@ public class DesafioMeuTimeApplicationSimpleTest {
     @Test(expected = TimeNaoEncontradoException.class)
     public void deveIdentificarTimeNaoEncontradoAoBuscarCapitaoDeTimeNaoExistente(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.buscarCapitaoDoTime(1l);
+    }
+
+    @Test(expected = CapitaoNaoInformadoException.class)
+    public void deveIdentificarCapitaoNaoInformadoAoBuscarCapitaoDeTimeSemCapitao(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
         desafioMeuTimeApplication.buscarCapitaoDoTime(1l);
     }
 

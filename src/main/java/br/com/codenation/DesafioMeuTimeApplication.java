@@ -3,6 +3,7 @@ package br.com.codenation;
 import br.com.codenation.comparator.JogadorMaiorSalarioComparator;
 import br.com.codenation.comparator.JogadorMaisVelhoComparator;
 import br.com.codenation.comparator.JogadorNiveldeHabilidadeComparator;
+import br.com.codenation.exceptions.CapitaoNaoInformadoException;
 import br.com.codenation.exceptions.IdentificadorUtilizadoException;
 import br.com.codenation.exceptions.JogadorNaoEncontradoException;
 import br.com.codenation.exceptions.TimeNaoEncontradoException;
@@ -45,6 +46,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
     public Long buscarCapitaoDoTime(Long idTime) {
         time = buscarTimePorId(idTime);
+        if (time.getIdDoJogadorCapitao() == null) {
+            throw new CapitaoNaoInformadoException();
+        }
         return time.getIdDoJogadorCapitao();
     }
     
