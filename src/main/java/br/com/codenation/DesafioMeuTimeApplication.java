@@ -4,6 +4,7 @@ import br.com.codenation.comparator.JogadorMaiorSalarioComparator;
 import br.com.codenation.comparator.JogadorMaisVelhoComparator;
 import br.com.codenation.comparator.JogadorNiveldeHabilidadeComparator;
 import br.com.codenation.exceptions.IdentificadorUtilizadoException;
+import br.com.codenation.exceptions.TimeNaoEncontradoException;
 import br.com.codenation.model.Jogador;
 import br.com.codenation.model.TimeDeFutebol;
 import java.math.BigDecimal;
@@ -26,6 +27,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public void incluirJogador(Long id, Long idTime, String nome, LocalDate dataNascimento, Integer nivelHabilidade, BigDecimal salario) {
+        if (buscarTimePorId(idTime) == null) {
+            throw new TimeNaoEncontradoException();
+        }
         Jogador jogador = new Jogador(id, idTime, nome, dataNascimento, nivelHabilidade, salario);
         validaIdentificador(listaDeJogadores, jogador);
         listaDeJogadores.add(jogador);

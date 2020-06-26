@@ -1,6 +1,7 @@
 package br.com.codenation;
 
 import br.com.codenation.exceptions.IdentificadorUtilizadoException;
+import br.com.codenation.exceptions.TimeNaoEncontradoException;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -33,6 +34,12 @@ public class DesafioMeuTimeApplicationSimpleTest {
         desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
         desafioMeuTimeApplication.incluirJogador(1l, 1l, "Jogador", LocalDate.now(), 1, BigDecimal.TEN);
         assertEquals(new Long(1L), desafioMeuTimeApplication.buscarJogadoresDoTime(1L).get(0));
+    }
+
+    @Test(expected = TimeNaoEncontradoException.class)
+    public void deveIncluirJogadorNaoExistenteEmTimeNaoExistente(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirJogador(1l, 1l, "Jogador", LocalDate.now(), 1, BigDecimal.TEN);
     }
 
     @Test(expected = IdentificadorUtilizadoException.class)
