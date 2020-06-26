@@ -1,5 +1,6 @@
 package br.com.codenation;
 
+import br.com.codenation.comparator.JogadorMaisVelhoComparator;
 import br.com.codenation.comparator.JogadorNiveldeHabilidadeComparator;
 import br.com.codenation.model.Jogador;
 import br.com.codenation.model.TimeDeFutebol;
@@ -93,7 +94,13 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
     
     public Long buscarJogadorMaisVelho(Long idTime) {
-        throw new UnsupportedOperationException();
+        List<Jogador> jogadoresDoTime = new ArrayList<>();
+        for (Long idDoJogador : buscarJogadoresDoTime(idTime)) {
+            jogadoresDoTime.add(buscarJogadorPorId(idDoJogador));
+        }
+        Collections.sort(jogadoresDoTime, new JogadorMaisVelhoComparator());
+        Long idDoJogadorMaisVelho = jogadoresDoTime.get(0).getId();
+        return idDoJogadorMaisVelho;
     }
 
     public List<Long> buscarTimes() {
