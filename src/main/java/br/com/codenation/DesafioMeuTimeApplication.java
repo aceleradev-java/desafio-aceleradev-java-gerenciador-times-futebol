@@ -21,17 +21,13 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
     public void incluirTime(Long id, String nome, LocalDate dataCriacao, String corUniformePrincipal, String corUniformeSecundario) {
         TimeDeFutebol time = new TimeDeFutebol(id, nome, dataCriacao, corUniformePrincipal, corUniformeSecundario);
-        if (listaDeTimes.contains(time)) {
-            throw new IdentificadorUtilizadoException();
-        }
+        validaIdentificador(listaDeTimes, time);
         listaDeTimes.add(time);
     }
 
     public void incluirJogador(Long id, Long idTime, String nome, LocalDate dataNascimento, Integer nivelHabilidade, BigDecimal salario) {
         Jogador jogador = new Jogador(id, idTime, nome, dataNascimento, nivelHabilidade, salario);
-        if (listaDeJogadores.contains(jogador)) {
-            throw new IdentificadorUtilizadoException();
-        }
+        validaIdentificador(listaDeJogadores, jogador);
         listaDeJogadores.add(jogador);
     }
 
@@ -145,5 +141,10 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
         return idDosTopJogadores;
     }
-    
+
+    private void validaIdentificador(List lista, Object objeto) {
+        if (lista.contains(objeto)) {
+            throw new IdentificadorUtilizadoException();
+        }
+    }
 }
