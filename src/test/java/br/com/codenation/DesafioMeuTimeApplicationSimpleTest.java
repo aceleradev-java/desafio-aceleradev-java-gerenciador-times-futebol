@@ -106,6 +106,12 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertEquals("Jogador", desafioMeuTimeApplication.buscarNomeJogador(1L));
     }
 
+    @Test(expected = JogadorNaoEncontradoException.class)
+    public void deveIdentificarJogadorNaoEncontradoAoBuscarNomeJogadorDoJogadorNaoIncluso(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.buscarNomeJogador(100L);
+    }
+
     @Test
     public void deveBuscarNomeTime(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
