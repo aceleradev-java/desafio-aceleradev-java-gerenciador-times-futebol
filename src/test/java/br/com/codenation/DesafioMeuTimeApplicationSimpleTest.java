@@ -35,6 +35,14 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertEquals(new Long(1L), desafioMeuTimeApplication.buscarJogadoresDoTime(1L).get(0));
     }
 
+    @Test(expected = IdentificadorUtilizadoException.class)
+    public void deveIdentificarIdentificadorUtilizadoAoIncluirJogador(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirJogador(1l, 1l, "Jogador", LocalDate.now(), 1, BigDecimal.TEN);
+        desafioMeuTimeApplication.incluirJogador(1l, 1l, "Jogador", LocalDate.now(), 1, BigDecimal.TEN);
+    }
+
     @Test
     public void deveBuscarTimeExistentePorId(){
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();

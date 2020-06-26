@@ -29,6 +29,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
     public void incluirJogador(Long id, Long idTime, String nome, LocalDate dataNascimento, Integer nivelHabilidade, BigDecimal salario) {
         Jogador jogador = new Jogador(id, idTime, nome, dataNascimento, nivelHabilidade, salario);
+        if (listaDeJogadores.contains(jogador)) {
+            throw new IdentificadorUtilizadoException();
+        }
         listaDeJogadores.add(jogador);
     }
 
