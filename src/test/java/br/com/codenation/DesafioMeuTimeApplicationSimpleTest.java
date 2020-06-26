@@ -4,11 +4,13 @@ import br.com.codenation.exceptions.CapitaoNaoInformadoException;
 import br.com.codenation.exceptions.IdentificadorUtilizadoException;
 import br.com.codenation.exceptions.JogadorNaoEncontradoException;
 import br.com.codenation.exceptions.TimeNaoEncontradoException;
+import br.com.codenation.model.TimeDeFutebol;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -203,6 +205,12 @@ public class DesafioMeuTimeApplicationSimpleTest {
         desafioMeuTimeApplication.incluirTime(2l, "Teste1", LocalDate.now(), "branco", "branco");
         desafioMeuTimeApplication.incluirTime(3l, "Teste1", LocalDate.now(), "branco", "branco");
         assertEquals(3L, desafioMeuTimeApplication.buscarTimes().size());
+    }
+
+    @Test
+    public void deveListarABuscaDeTodosOsTimesVazia(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        assertEquals(new ArrayList<Long>(), desafioMeuTimeApplication.buscarTimes());
     }
 
     @Test
