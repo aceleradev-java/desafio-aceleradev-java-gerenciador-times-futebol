@@ -1,5 +1,6 @@
 package br.com.codenation;
 
+import br.com.codenation.exceptions.IdentificadorUtilizadoException;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -17,6 +18,13 @@ public class DesafioMeuTimeApplicationSimpleTest {
         final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
         desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
         assertEquals(new Long(1L), desafioMeuTimeApplication.buscarTimes().get(0));
+    }
+
+    @Test(expected = IdentificadorUtilizadoException.class)
+    public void deveIdentificarIdentificadorUtilizadoAoIncluirTime(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
     }
 
     @Test

@@ -3,6 +3,7 @@ package br.com.codenation;
 import br.com.codenation.comparator.JogadorMaiorSalarioComparator;
 import br.com.codenation.comparator.JogadorMaisVelhoComparator;
 import br.com.codenation.comparator.JogadorNiveldeHabilidadeComparator;
+import br.com.codenation.exceptions.IdentificadorUtilizadoException;
 import br.com.codenation.model.Jogador;
 import br.com.codenation.model.TimeDeFutebol;
 import java.math.BigDecimal;
@@ -20,6 +21,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
     public void incluirTime(Long id, String nome, LocalDate dataCriacao, String corUniformePrincipal, String corUniformeSecundario) {
         TimeDeFutebol time = new TimeDeFutebol(id, nome, dataCriacao, corUniformePrincipal, corUniformeSecundario);
+        if (listaDeTimes.contains(time)) {
+            throw new IdentificadorUtilizadoException();
+        }
         listaDeTimes.add(time);
     }
 
