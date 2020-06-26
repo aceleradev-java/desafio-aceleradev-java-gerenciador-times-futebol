@@ -55,6 +55,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
                 time = t;
             }
         }
+        if (time == null) {
+            throw new TimeNaoEncontradoException();
+        }
         return time;
     }
 
