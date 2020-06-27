@@ -291,4 +291,12 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertEquals(3L, jogadores.get(0).longValue());
         assertEquals(4L, jogadores.get(1).longValue());
     }
+
+    @Test
+    public void deveRetonarListaVaziaQuandoBuscarTopJogadoresSemJogadoresIncluidos(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        List<Long> jogadores = desafioMeuTimeApplication.buscarTopJogadores(2);
+        assertEquals(0, jogadores.size());
+        assertEquals(new ArrayList<Long>(), jogadores);
+    }
 }

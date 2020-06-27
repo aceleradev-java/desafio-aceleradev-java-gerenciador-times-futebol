@@ -149,6 +149,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
     }
 
     public List<Long> buscarTopJogadores(Integer top) {
+        if (listaDeJogadores.size() == 0) {
+            return new ArrayList<Long>();
+        }
         Collections.sort(listaDeJogadores, new JogadorNiveldeHabilidadeComparator());
         List<Long> idDosTopJogadores = new ArrayList<>();
         int i = 0;
