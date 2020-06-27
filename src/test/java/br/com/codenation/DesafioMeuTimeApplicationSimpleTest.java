@@ -278,4 +278,17 @@ public class DesafioMeuTimeApplicationSimpleTest {
         assertEquals(4L, jogadores.get(0).longValue());
         assertEquals(3L, jogadores.get(1).longValue());
     }
+
+    @Test
+    public void deveRetonarTopJogadoresComNivelDeHabilidadeEmapatados(){
+        final DesafioMeuTimeApplication desafioMeuTimeApplication = new DesafioMeuTimeApplication();
+        desafioMeuTimeApplication.incluirTime(1l, "Teste1", LocalDate.now(), "branco", "branco");
+        desafioMeuTimeApplication.incluirJogador(2l, 1l, "Jogador", LocalDate.now().minus(25, ChronoUnit.YEARS), 1, new BigDecimal(10000));
+        desafioMeuTimeApplication.incluirJogador(4l, 1l, "Jogador3", LocalDate.now().minus(20, ChronoUnit.YEARS), 3, new BigDecimal(30000));
+        desafioMeuTimeApplication.incluirJogador(3l, 1l, "Jogador2", LocalDate.now().minus(20, ChronoUnit.YEARS), 3, new BigDecimal(20000));
+        List<Long> jogadores = desafioMeuTimeApplication.buscarTopJogadores(2);
+        assertEquals(2, jogadores.size());
+        assertEquals(3L, jogadores.get(0).longValue());
+        assertEquals(4L, jogadores.get(1).longValue());
+    }
 }
